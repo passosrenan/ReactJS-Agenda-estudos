@@ -1,26 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import '../../assets/img/check-mark.svg'
 import { Item } from './item'
 import style from './Lista.module.scss'
 
+interface ITarefas{
+    tarefa: string, 
+    tempo: string,
+}
 
-function Lista() {
-    const tarefas =[{
-        tarefa:"JavaScript", tempo:"01:30:00"
-      },
-      {
-      tarefa:"React", tempo:"02:00:00"
-        }
-      ]
-
+function Lista({tarefas}:{tarefas: ITarefas[]}) {
     return (
         <aside className={style.listaTarefas}>
             <h2>Estudos do dia</h2>
             <ul>
                 {tarefas.map((item,index)=>(
                     <Item
+                        key={index}
                         tarefa ={item.tarefa}
                         tempo ={item.tempo}
+                    
                     />
 
                 ))}
