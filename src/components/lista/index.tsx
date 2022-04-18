@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import '../../assets/img/check-mark.svg'
-import { Item } from './item'
+import { ITarefas } from "../../types/Tarefas";
+import Item from "./item";
 import style from './Lista.module.scss'
 
-interface ITarefas{
-    tarefa: string, 
-    tempo: string,
+interface Props {
+    tarefas:ITarefas[],
+    selecionaTarefas:(tarefaSelecionada: ITarefas) => void,
 }
 
-function Lista({tarefas}:{tarefas: ITarefas[]}) {
+function Lista({tarefas, selecionaTarefas}: Props) {
     return (
         <aside className={style.listaTarefas}>
             <h2>Estudos do dia</h2>
             <ul>
-                {tarefas.map((item,index)=>(
+                {tarefas.map(item => (
                     <Item
-                        key={index}
-                        tarefa ={item.tarefa}
-                        tempo ={item.tempo}
+                        selecionaTarefas={selecionaTarefas}
+                        key={item.id}
+                        {...item}
                     
                     />
 
