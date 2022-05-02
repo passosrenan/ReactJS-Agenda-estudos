@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 
 interface Props {
     selecionado: ITarefas | undefined
+    finalizarTarefa(): void
 }
 
-export function Cronometro({ selecionado }: Props) {
+export function Cronometro({ selecionado, finalizarTarefa}: Props) {
     /* console.log('conversao para segundos', tempoParaSegundos('01:01:01')) */
 
 
@@ -26,9 +27,10 @@ export function Cronometro({ selecionado }: Props) {
                 setTempo(contador-1)
                 return regressiva(contador-1)
             }
+            finalizarTarefa()
         },1000)
     }
-
+    
     return (
         <div className={style.cronometro}>
             <p className={style.titulo}>Escolha um card e inicie o cronometro</p>
